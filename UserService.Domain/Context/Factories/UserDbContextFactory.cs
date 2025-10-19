@@ -9,7 +9,7 @@ public class UserDbContextFactory : IDesignTimeDbContextFactory<UserServiceDbCon
     public UserServiceDbContext CreateDbContext(string[] args)
     {
         //Set before creating migration and then clear
-        var connectionString = ".!.";
+        var connectionString = "Host=localhost;Port=5432;Username=postgres;Password=123456789;Database=UserDb";
 
         var optionsBuilder =  new DbContextOptionsBuilder();
         optionsBuilder.UseNpgsql(connectionString);
