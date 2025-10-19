@@ -22,7 +22,7 @@ namespace UserService.Domain.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("UserService.Domain.Data.Models.ManyToMany.StudentCourse", b =>
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.StudentCourse", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +34,7 @@ namespace UserService.Domain.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("StudentId")
+                    b.Property<Guid>("StudentDataId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -42,12 +42,37 @@ namespace UserService.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("StudentDataId");
 
                     b.ToTable("StudentCourseRelations");
                 });
 
-            modelBuilder.Entity("UserService.Domain.Data.Models.ManyToMany.TeacherGroup", b =>
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.TeacherCourse", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("TeacherDataId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherDataId");
+
+                    b.ToTable("TeacherCourse");
+                });
+
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.TeacherGroup", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +84,7 @@ namespace UserService.Domain.Migrations
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("TeacherId")
+                    b.Property<Guid>("TeacherDataId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -67,7 +92,7 @@ namespace UserService.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("TeacherDataId");
 
                     b.ToTable("TeacherGroupRelations");
                 });
@@ -145,22 +170,33 @@ namespace UserService.Domain.Migrations
                     b.HasDiscriminator().HasValue("Teacher");
                 });
 
-            modelBuilder.Entity("UserService.Domain.Data.Models.ManyToMany.StudentCourse", b =>
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.StudentCourse", b =>
                 {
                     b.HasOne("UserService.Domain.Data.Models.RoleData.StudentRoleData", "StudentData")
                         .WithMany("StudentCourseRelations")
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("StudentDataId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("StudentData");
                 });
 
-            modelBuilder.Entity("UserService.Domain.Data.Models.ManyToMany.TeacherGroup", b =>
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.TeacherCourse", b =>
+                {
+                    b.HasOne("UserService.Domain.Data.Models.RoleData.TeacherRoleData", "TeacherData")
+                        .WithMany("TeacherCourseRelations")
+                        .HasForeignKey("TeacherDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeacherData");
+                });
+
+            modelBuilder.Entity("UserService.Domain.Data.Models.Relations.TeacherGroup", b =>
                 {
                     b.HasOne("UserService.Domain.Data.Models.RoleData.TeacherRoleData", "TeacherData")
                         .WithMany("TeacherGroupRelations")
-                        .HasForeignKey("TeacherId")
+                        .HasForeignKey("TeacherDataId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -185,6 +221,8 @@ namespace UserService.Domain.Migrations
 
             modelBuilder.Entity("UserService.Domain.Data.Models.RoleData.TeacherRoleData", b =>
                 {
+                    b.Navigation("TeacherCourseRelations");
+
                     b.Navigation("TeacherGroupRelations");
                 });
 #pragma warning restore 612, 618

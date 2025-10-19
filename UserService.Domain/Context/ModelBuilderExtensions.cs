@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserService.Domain.Data.Models;
-using UserService.Domain.Data.Models.ManyToMany;
+using UserService.Domain.Data.Models.Relations;
 using UserService.Domain.Data.Models.RoleData;
 
 namespace UserService.Domain.Context;
@@ -39,7 +39,7 @@ public static class ModelBuilderExtensions
             .Entity<StudentRoleData>()
             .HasMany<StudentCourse>(data => data.StudentCourseRelations)
             .WithOne(relation => relation.StudentData)
-            .HasForeignKey(relation => relation.StudentId);
+            .HasForeignKey(relation => relation.StudentDataId);
 
         return modelBuilder;
     }
@@ -50,8 +50,14 @@ public static class ModelBuilderExtensions
             .Entity<TeacherRoleData>()
             .HasMany<TeacherGroup>(data => data.TeacherGroupRelations)
             .WithOne(relation => relation.TeacherData)
-            .HasForeignKey(relation => relation.TeacherId);
+            .HasForeignKey(relation => relation.TeacherDataId);
 
+        modelBuilder
+            .Entity<TeacherRoleData>()
+            .HasMany<TeacherCourse>(data => data.TeacherCourseRelations)
+            .WithOne(relation => relation.TeacherData)
+            .HasForeignKey(relation => relation.TeacherDataId);
+        
         return modelBuilder;
     }
 }

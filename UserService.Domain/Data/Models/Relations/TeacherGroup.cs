@@ -1,10 +1,10 @@
 using UserService.Domain.Data.Models.RoleData;
 
-namespace UserService.Domain.Data.Models.ManyToMany;
+namespace UserService.Domain.Data.Models.Relations;
 
 public class TeacherGroup : EntityBase
 {
-    public Guid TeacherId { get; init; }
+    public Guid TeacherDataId { get; init; }
 
     public TeacherRoleData TeacherData { get; init; } = null!;
     

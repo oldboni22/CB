@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserService.Domain.Data.Models;
-using UserService.Domain.Data.Models.ManyToMany;
+using UserService.Domain.Data.Models.Relations;
 using UserService.Domain.Data.Models.RoleData;
 
 namespace UserService.Domain.Context;

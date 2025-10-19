@@ -9,7 +9,7 @@ public class User : EntityBase
     
     public UserRole Role { get; init; }
     
-    public Guid RoleDataId { get; set; }
+    public Guid RoleDataId { get; init; }
 
-    public RoleData.RoleData RoleData { get; set; } = null!;
+    public RoleData.RoleData RoleData { get; init; } = null!;
 }   
