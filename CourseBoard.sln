@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserService", "UserService", "{41D9376F-586B-40F7-8D2E-5A736DB04A4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Domain", "UserService.Domain\UserService.Domain.csproj", "{E7EB83D1-3168-462C-A6E6-8DCA053AA55B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "UserService.Infrastructure\UserService.Infrastructure.csproj", "{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7EB83D1-3168-462C-A6E6-8DCA053AA55B} = {41D9376F-586B-40F7-8D2E-5A736DB04A4C}
+		{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8} = {41D9376F-586B-40F7-8D2E-5A736DB04A4C}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7EB83D1-3168-462C-A6E6-8DCA053AA55B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7EB83D1-3168-462C-A6E6-8DCA053AA55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7EB83D1-3168-462C-A6E6-8DCA053AA55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7EB83D1-3168-462C-A6E6-8DCA053AA55B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE3D9FA-D388-44A1-8DA6-31FDEF71E3E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
