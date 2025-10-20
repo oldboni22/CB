@@ -15,6 +15,10 @@ public static class ModelBuilderExtensions
             .HasValue<StudentRoleData>("Student")
             .HasValue<TeacherRoleData>("Teacher");
 
+        modelBuilder
+            .ConfigureTeacherData()
+            .ConfigureStudentData();
+        
         return modelBuilder;
     }
 
@@ -25,10 +29,6 @@ public static class ModelBuilderExtensions
             .HasOne(u => u.RoleData)
             .WithOne()
             .HasForeignKey<User>(u => u.RoleDataId);
-
-        modelBuilder
-            .ConfigureTeacherData()
-            .ConfigureStudentData();
         
         return modelBuilder;
     }
