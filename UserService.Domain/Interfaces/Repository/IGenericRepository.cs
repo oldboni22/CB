@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-using Shared.PagedList;
 using UserService.Domain.Data.Models;
 
 namespace UserService.Domain.Interfaces.Repository;
