@@ -88,6 +88,23 @@ public class RoleDataRepositoryTests : IDisposable, IAsyncDisposable
     }
     
     [Fact]
+    public async Task GetStudentDataAsync_UserDoesNotExist_ReturnsNull()
+    {
+        //Arrange
+        var user = _fixture
+            .Build<User>()
+            .With(u => u.Role, UserRole.Student)
+            .With(u => u.RoleData, new StudentRoleData())
+            .Create();
+        
+        //Act
+        var result = await _sut.GetStudentDataAsync(user);
+        
+        //Assert
+        result.ShouldBeNull();
+    }
+    
+    [Fact]
     public async Task GetTeacherDataAsync_UserExistsAndIsTeacher_ReturnsData()
     {
         //Arrange
@@ -117,6 +134,23 @@ public class RoleDataRepositoryTests : IDisposable, IAsyncDisposable
             .Create();
         
         await SeedData(new List<User> { user });
+        
+        //Act
+        var result = await _sut.GetTeacherDataAsync(user);
+        
+        //Assert
+        result.ShouldBeNull();
+    }
+    
+    [Fact]
+    public async Task GetTeacherDataAsync_UserDoesNotExist_ReturnsNull()
+    {
+        //Arrange
+        var user = _fixture
+            .Build<User>()
+            .With(u => u.Role, UserRole.Student)
+            .With(u => u.RoleData, new TeacherRoleData())
+            .Create();
         
         //Act
         var result = await _sut.GetTeacherDataAsync(user);
